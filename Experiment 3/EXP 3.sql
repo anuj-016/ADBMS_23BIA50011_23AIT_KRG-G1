@@ -116,4 +116,17 @@ from
 union all
 select * from b)
 as u
+
 group by empid,ename
+
+
+
+
+SELECT U.empID, U.Ename, MIN(U.Salary) AS Salary
+FROM 
+	(
+		SELECT A.empID,A.Ename, A.Salary FROM A
+		UNION ALL
+		SELECT B.empID,  B.Ename, B.Salary FROM B
+	) as U
+GROUP BY U.empID,U.Ename;
